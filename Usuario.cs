@@ -10,7 +10,7 @@ namespace product_project
 
         //Instancia objetos de outras classes
         Ferramentas tool = new Ferramentas();
-        Login login  = new Login();
+        Login login = new Login();
 
         //Instancia atributos da classe Usuario
         private Random Codigo = new Random();
@@ -33,10 +33,10 @@ namespace product_project
 
             Console.WriteLine($"Digite seu nome completo:");
             NovoUsuario.Nome = Console.ReadLine();
-            
+
             Console.WriteLine($"Digite seu email:");
             NovoUsuario.Email = Console.ReadLine();
-            
+
             Console.WriteLine($"Digite sua senha: ");
             NovoUsuario.Senha = Console.ReadLine();
 
@@ -50,6 +50,27 @@ namespace product_project
             return "";
         }
 
+        public void VerificarCadastro(string _userEmail)
+        {
+            // Usuario usuarioEncontrado = usuarios.Find(x => x.Email == _userEmail);
+            // int index = usuarios.IndexOf(usuarioEncontrado);
+
+            // usuarios.
+
+            foreach (var item in usuarios)
+            {
+                if (item.Email.Contains(_userEmail))
+                {
+                        login.Logado = true;
+                }
+
+                else
+                {
+                    Console.WriteLine($"Email não cadastrado. Por favor, efetue o cadastro.");
+                }
+            }
+        }
+
         public string Deletar(Usuario _usuario)
         {
             Console.WriteLine($"Tem certeza que deseja excluir a sua conta? 's' para sim ou 'n' para não.");
@@ -61,9 +82,8 @@ namespace product_project
                 int index = usuarios.IndexOf(_usuario);
                 usuarios.RemoveAt(index);
                 tool.BarraCarregamento(500,5,"Apagando seu dados");
-                
+
                 Console.WriteLine($"Dados apagados com sucesso!");
-                login.Logado = false;
                     break;
 
                 case ConsoleKey.N:
@@ -73,7 +93,7 @@ namespace product_project
                 Console.WriteLine($"Tecla inválida.");
                     break;
             }
-            
+
 
                 return "";
         }

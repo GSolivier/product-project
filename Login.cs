@@ -7,8 +7,8 @@ namespace product_project
 {
     public class Login
     {
-
-        Usuario UsuariosCadastrados = new Usuario();
+        
+        Usuario user = new Usuario();
         public bool Logado { get; set; }
 
         public Login()
@@ -16,28 +16,25 @@ namespace product_project
             
         }
 
-        public string Logar(Usuario _usuario, Usuario _senha)
+        public void Programa()
+        {   
+            
+ 
+        }
+        public void Logar()
         {
             Console.WriteLine($"Digite seu email: ");
             string userEmail = Console.ReadLine();
 
+            user.VerificarCadastro(userEmail);
+
             Console.WriteLine($"Digite sua senha: ");
             string userSenha = Console.ReadLine();
 
-            if (UsuariosCadastrados.Email == userEmail && UsuariosCadastrados.Senha == userSenha)
-            {
-                Console.WriteLine($"MENU");
-                
-            }
 
-            else{
-                Console.WriteLine($"Usuario nao encontrado");
-                UsuariosCadastrados.Cadastrar();
-            }
             
-
-            return"";
         }
+
 
         public string Deslogar(Usuario _usuario)
         {
@@ -47,3 +44,4 @@ namespace product_project
 
     }
 }
+

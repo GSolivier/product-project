@@ -20,11 +20,11 @@ namespace product_project
 
         public void Programa()
         {   
-
-            Login:
+        Login:
         do
         {
-                    Console.WriteLine($"BEM VINDO AO NOSSO PROGRAMA!");
+            
+                Console.WriteLine($"BEM VINDO AO NOSSO PROGRAMA!");
 
                     Console.WriteLine(@$"
                                 O que deseja fazer?
@@ -33,7 +33,6 @@ namespace product_project
                                     [2] - Cadastro
 
                                 [0] - Sair do programa
-
                     ");
 
                     ConsoleKeyInfo escolhaMenu = Console.ReadKey(true);
@@ -41,11 +40,7 @@ namespace product_project
                     switch (escolhaMenu.Key)
                     {
                         case ConsoleKey.D1:
-
                         Logar();
-                        
-                         
-                                
                             break;
 
                         case ConsoleKey.D2:
@@ -57,7 +52,7 @@ namespace product_project
     
 } while (loopBreak);
 
-do
+while (Logado == true)
 {
     
     
@@ -70,6 +65,7 @@ do
         [4] - CADASTRAR MARCAS
         [5] - LISTAR MARCAS
         [6] - REMOVER MARCAS
+        [7] - APAGAR A CONTA
 
         [0] - DESLOGAR
     ");
@@ -80,13 +76,21 @@ do
                     {
                         case ConsoleKey.D0:
                         Deslogar();
+
+                        goto Login;
+
+                        case ConsoleKey.D7:
+                        Console.WriteLine($"Para confirmar a ação, digite o seu email:");
+                        string userEmail = Console.ReadLine();
+
+                        user.Deletar(userEmail);
                         goto Login;
                         default:
                             break;
                     }
 
 
-} while (Logado == true);
+}
  
         }
 
@@ -113,8 +117,6 @@ do
 
 
         }
-
-
         public void Deslogar()
         {
             tool.BarraCarregamento(500,5,"Deslogando");

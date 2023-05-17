@@ -61,7 +61,7 @@ namespace product_project
 
                 if (usuarioEncontrado == null)
                 {
-                    Console.WriteLine($"Email não cadastrado.");
+                    Console.WriteLine($"Email ou senha icorretos.");
                     Console.WriteLine($"");
                     return false;
                 }
@@ -80,7 +80,8 @@ namespace product_project
 
                             else
                             {
-                                tool.BarraCarregamento(500, 5, "SENHA INCORRETA. VOLTANDO PARA O MENU.");
+                                Console.WriteLine($"Email ou senha incorretos");
+                                
                                 login.Logado = false;
                                 return false;
                                 
@@ -103,30 +104,46 @@ namespace product_project
             Console.WriteLine($"Bem vindo {usuarioEncontrado.Nome}! ");
             
         }
-        public string Deletar(Usuario _usuario)
+
+
+       public void Deletar(string _userEmail)
+{
+    Login login = new Login();
+
+    Usuario usuarioEncontrado = usuarios.Find(x => x.Email == _userEmail);
+    if (usuarioEncontrado == null)
+    {
+        Console.WriteLine($"Email incorreto. Retornando ao menu");
+        tool.BarraCarregamento(500, 5, "");
+    }
+    else
+    {
+        Console.WriteLine($"Tem certeza que deseja excluir a sua conta? 's' para sim ou 'n' para não.");
+        ConsoleKeyInfo escolhaMenu = Console.ReadKey(true);
+
+        if (escolhaMenu.Key == ConsoleKey.S)
         {
-            Console.WriteLine($"Tem certeza que deseja excluir a sua conta? 's' para sim ou 'n' para não.");
-            ConsoleKeyInfo escolhaMenu = Console.ReadKey(true);
+            int index = usuarios.IndexOf(usuarioEncontrado);
+            usuarios.RemoveAt(index);
+            tool.BarraCarregamento(500, 5, "Apagando seus dados");
 
-            switch (escolhaMenu.Key)
-            {
-                case ConsoleKey.S:
-                int index = usuarios.IndexOf(_usuario);
-                usuarios.RemoveAt(index);
-                tool.BarraCarregamento(500,5,"Apagando seu dados");
-
-                Console.WriteLine($"Dados apagados com sucesso!");
-                    break;
-
-                case ConsoleKey.N:
-                tool.BarraCarregamento(500,5,"Cancelando Operação");
-                break;
-                default:
-                Console.WriteLine($"Tecla inválida.");
-                    break;
-            }
-
-                return "";
+            Console.WriteLine($"Dados apagados com sucesso!");
+            tool.BarraCarregamento(500, 5, "Retornando para tela de login");
+            login.Deslogar();
+            
         }
+        else if (escolhaMenu.Key == ConsoleKey.N)
+        {
+            tool.BarraCarregamento(500, 5, "Cancelando Operação");
+            
+        }
+        else
+        {
+            Console.WriteLine($"Tecla inválida.");
+            
+        }
+    }
+}
+
     }
 }

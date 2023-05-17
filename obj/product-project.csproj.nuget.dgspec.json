@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\42634177801\\Desktop\\product-project\\product-project.csproj": {}
+    "C:\\Users\\42634177801\\Desktop\\tec-dev\\product-project\\product-project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\42634177801\\Desktop\\product-project\\product-project.csproj": {
+    "C:\\Users\\42634177801\\Desktop\\tec-dev\\product-project\\product-project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\42634177801\\Desktop\\product-project\\product-project.csproj",
+        "projectUniqueName": "C:\\Users\\42634177801\\Desktop\\tec-dev\\product-project\\product-project.csproj",
         "projectName": "product-project",
-        "projectPath": "C:\\Users\\42634177801\\Desktop\\product-project\\product-project.csproj",
+        "projectPath": "C:\\Users\\42634177801\\Desktop\\tec-dev\\product-project\\product-project.csproj",
         "packagesPath": "C:\\Users\\42634177801\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\42634177801\\Desktop\\product-project\\obj\\",
+        "outputPath": "C:\\Users\\42634177801\\Desktop\\tec-dev\\product-project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\42634177801\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

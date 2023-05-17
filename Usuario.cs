@@ -10,13 +10,17 @@ namespace product_project
 
         //Instancia objetos de outras classes
         Ferramentas tool = new Ferramentas();
-        Login login = new Login();
+        
 
         //Instancia atributos da classe Usuario
         private Random Codigo = new Random();
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
+
+        Usuario usuarioEncontrado;
+
+        public string UserCadastrado { get; set; }
         private DateTime DataCadastro = DateTime.Now;
 
         //Instancia a lista ''usuarios''
@@ -50,27 +54,55 @@ namespace product_project
             return "";
         }
 
-        public void VerificarCadastro(string _userEmail)
+        public bool VerificarCadastro(string _userEmail, string _userSenha)
         {
-            // Usuario usuarioEncontrado = usuarios.Find(x => x.Email == _userEmail);
-            // int index = usuarios.IndexOf(usuarioEncontrado);
+            Login login = new Login();
+            Usuario usuarioEncontrado = usuarios.Find(x => x.Email == _userEmail);
 
-            // usuarios.
-
-            foreach (var item in usuarios)
-            {
-                if (item.Email.Contains(_userEmail))
+                if (usuarioEncontrado == null)
                 {
-                        login.Logado = true;
+                    Console.WriteLine($"Email não cadastrado.");
+                    Console.WriteLine($"");
+                    return false;
+                }
+
+                if (usuarioEncontrado.Email != null && usuarioEncontrado.Email == _userEmail)
+                {
+                       
+                            if (usuarioEncontrado.Senha != null && usuarioEncontrado.Senha == _userSenha)
+                            {
+
+
+                                    tool.BarraCarregamento(500, 5, "Logando");
+                                    Console.WriteLine($"");
+                                    return true;
+                            }
+
+                            else
+                            {
+                                tool.BarraCarregamento(500, 5, "SENHA INCORRETA. VOLTANDO PARA O MENU.");
+                                login.Logado = false;
+                                return false;
+                                
+                            }
+                       
                 }
 
                 else
                 {
                     Console.WriteLine($"Email não cadastrado. Por favor, efetue o cadastro.");
+                    
+                return false;
                 }
             }
-        }
 
+        public void UserLogado(string _userEmail)
+        {
+            Usuario usuarioEncontrado = usuarios.Find(x => x.Email == _userEmail);
+
+            Console.WriteLine($"Bem vindo {usuarioEncontrado.Nome}! ");
+            
+        }
         public string Deletar(Usuario _usuario)
         {
             Console.WriteLine($"Tem certeza que deseja excluir a sua conta? 's' para sim ou 'n' para não.");
@@ -93,7 +125,6 @@ namespace product_project
                 Console.WriteLine($"Tecla inválida.");
                     break;
             }
-
 
                 return "";
         }

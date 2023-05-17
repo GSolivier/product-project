@@ -10,13 +10,14 @@ namespace product_project
         public void BarraCarregamento(int _tempo, int _pontos, string _texto)
         {
 
-            Console.WriteLine(_texto);
+            Console.Write(_texto);
             
             for (var i = 0; i < _pontos; i++)
             {
                 Console.Write(".");
                 Thread.Sleep(_tempo);
             }
+            Console.Clear();
         }
     }
 }

@@ -14,14 +14,26 @@ namespace product_project
         private float Preco { get; set; }
         private DateTime DataCadastro = DateTime.Now;
         private Marca Marca = new Marca();
-        private Usuario CadastradoPor { get; set; }
+        private Usuario CadastradoPor = new Usuario();
+
+        private string email;
 
         private List<Produto> ListaDeProdutos = new List<Produto>();
 
 
+        public Produto(Usuario _userEmail)
+        {
+            email = _userEmail.Email;
+        }
+
+        public Produto()
+        {
+            
+        }
         public void Cadastrar()
         {
             Produto NovoProduto = new Produto();
+            Login login = new Login();
             
 
             Console.WriteLine($"Digite o código do produto: ");
@@ -42,7 +54,7 @@ namespace product_project
             Console.WriteLine($"Produto Cadastrado com sucesso!");
 
             Console.WriteLine($"Data de cadastro: {NovoProduto.DataCadastro}");
-            Console.WriteLine($"Cadastrado por:");
+            Console.WriteLine($"Cadastrado por: {email}");
             
             ListaDeProdutos.Add(NovoProduto);
         }
@@ -51,6 +63,8 @@ namespace product_project
         {
             foreach (var item in ListaDeProdutos)
             {
+                Console.WriteLine($"--------------------------------------------------------");
+                
                 Console.WriteLine($"Nome do produto: {item.NomeProduto}");
                 Console.WriteLine($"Código do produto: {item.Codigo}");
                 Console.WriteLine($"Marca do produto: {item.Marca.NomeMarca}");
@@ -60,6 +74,12 @@ namespace product_project
                 Console.WriteLine($"Data de cadastro: {item.DataCadastro}");
                 Console.WriteLine($"Cadastrado por: ");
             }
+
+            Console.WriteLine($"--------------------------------------------------------");
+
+            Console.WriteLine($"Aperte qualquer botão para continuar...");
+            
+            Console.ReadKey();
         }
 
         public void Deletar (int _CodigoProduto)
@@ -68,13 +88,20 @@ namespace product_project
 
             if (CodigoProdutoDeletar == null)
             {
-                Console.WriteLine($"Produto não encontrado");
-                
+                Console.Clear();
+                Console.WriteLine($"PRODUTO NÃO ENCONTRADO");
+
+                Console.WriteLine($"Aperte qualquer tecla para continuar...");
+                Console.ReadKey();
             }
-            else{
+
+            else
+            {
                 if (CodigoProdutoDeletar.Codigo != null && CodigoProdutoDeletar.Codigo == _CodigoProduto)
                 {
                     Console.WriteLine($"Produto Encontrado");
+                    Console.WriteLine($"");
+                    Console.WriteLine($"--------------------------------------------------------");
 
                     Console.WriteLine($"Nome do produto: {CodigoProdutoDeletar.NomeProduto}");
                     Console.WriteLine($"Código do produto: {CodigoProdutoDeletar.Codigo}");
@@ -84,9 +111,12 @@ namespace product_project
 
                     Console.WriteLine($"Data de cadastro: {CodigoProdutoDeletar.DataCadastro}");
                     Console.WriteLine($"Cadastrado por: ");
-                    
+                    Console.WriteLine($"--------------------------------------------------------");
+                    Console.WriteLine($"");
 
-                    Console.WriteLine($"Tem certeza que deseja excluir o produto    ? 's' para sim ou 'n' para não.");
+
+                    escolhaMenu:
+                    Console.WriteLine($"Tem certeza que deseja excluir o produto? 's' para sim ou 'n' para não.");
                     ConsoleKeyInfo escolhaMenu = Console.ReadKey(true);
 
                     switch (escolhaMenu.Key)
@@ -96,16 +126,17 @@ namespace product_project
                             ListaDeProdutos.RemoveAt(index);
                             tool.BarraCarregamento(500, 5, "Apagando seus dados");
                             break;
+
                         case ConsoleKey.N:
                          tool.BarraCarregamento(500,5,"Cancelando operação.");
                             break;
+
                         default:
-                            break;
+                            Console.WriteLine($"Digite uma tecla válida");
+                            
+                            goto escolhaMenu;
                     }
-                    
-
-
-                    
+                
                 }
 
             }

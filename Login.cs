@@ -15,6 +15,7 @@ namespace product_project
         public bool Logado { get; set; } // atributo booleano para validar se o usuário está ou não logado.
         public bool loopBreak = true; // atributo privado utilizado somente no loop do menu de login e cadastro.
 
+
         public Login()
         {
             
@@ -133,7 +134,6 @@ namespace product_project
             Console.WriteLine($"Digite seu email: "); // Pede o email para o usuário.
             string userEmail = Console.ReadLine(); // Armazena o email digitado pelo usuário na variável 'userEmail'
 
-
             Console.WriteLine($"Digite sua senha: "); // Pede a senha para o usuário.
             string userSenha = Console.ReadLine(); // Armazena a senha digitado pelo usuário na variável 'userSenha'
 
@@ -144,7 +144,7 @@ namespace product_project
                     Logado = true; // Muda o estado do atributo 'Logado' para true, para que seja possivel entrar no loop em que se necessita esse estado.
                     loopBreak = false; // Muda o estado do atributo 'loopBreak' para false, para quebrar o loop do login e cadastro.
 
-                user.UserLogado(userEmail); // Função da classe Usuário, que verifica e estabelece qual usuário está logado.
+                Console.WriteLine($"Bem vindo {user.UserLogado(userEmail)}!");
             }
 
 

@@ -89,12 +89,10 @@ namespace product_project
         public string UserLogado(string _userEmail) // Método para veficiar o usuário que esta logado
         {
             Usuario usuarioEncontrado = usuarios.Find(x => x.Email == _userEmail); // Cria um objeto da classe usuário, que pega o email que o usuário digita no login, e usando o Find, ele verifica se aquele email existe, guardando no objeto 'usuarioEncontrado'
-
-            Console.WriteLine($"Bem vindo {usuarioEncontrado.Nome}! "); // Informa o nome do usuário que está logado.
             
+            Produto obj = new Produto(usuarioEncontrado);
             return usuarioEncontrado.Nome;
         }
-
 
        public bool Deletar(string _userEmail)
         {

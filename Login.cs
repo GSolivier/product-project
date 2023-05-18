@@ -91,6 +91,17 @@ namespace product_project
                             product.Cadastrar();
                         break;
 
+                        case ConsoleKey.D2:
+                            product.Listar();
+                        break;
+
+                        case ConsoleKey.D3:
+                            Console.WriteLine($"Digite o código do produto que deseja deletar:");
+                            int userCodigo = int.Parse(Console.ReadLine());
+                            
+                            product.Deletar(userCodigo);
+                        break;
+
                         case ConsoleKey.D8: // oitavo caso, se o usuário apertar o número 8 no teclado e escolher a opção [8] - APAGAR A CONTA.
                             Console.WriteLine($"Para confirmar a ação, digite o seu email:"); // Pede ao usuário para digitar seu email, a fim de confirmação da exclusão da conta.
                             string userEmail = Console.ReadLine(); // guarda a informação digitada pelo usuário na variável 'userEmail'.

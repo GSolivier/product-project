@@ -10,6 +10,8 @@ namespace product_project
         Usuario user = new Usuario(); // Cria um objeto global da classe 'Usuario', para utilizar os métodos e atributos das classes aqui.
         Ferramentas tool = new Ferramentas(); // Cria um objeto global da classe 'Ferramentas', para utilizar os métodos e atributos das classes aqui.
 
+        Produto product = new Produto();
+
         public bool Logado { get; set; } // atributo booleano para validar se o usuário está ou não logado.
         public bool loopBreak = true; // atributo privado utilizado somente no loop do menu de login e cadastro.
 
@@ -85,11 +87,24 @@ namespace product_project
                     switch (escolhaMenu.Key) // swtich case para a validação da tecla apertada pelo usuário
                     {
 
+                        case ConsoleKey.D1:
+                            product.Cadastrar();
+                        break;
+
                         case ConsoleKey.D8: // oitavo caso, se o usuário apertar o número 8 no teclado e escolher a opção [8] - APAGAR A CONTA.
                             Console.WriteLine($"Para confirmar a ação, digite o seu email:"); // Pede ao usuário para digitar seu email, a fim de confirmação da exclusão da conta.
                             string userEmail = Console.ReadLine(); // guarda a informação digitada pelo usuário na variável 'userEmail'.
                             user.Deletar(userEmail); // Chama a função 'Deletar' da classe usuário, passando como parâmetro a váriavel 'userEmail.'
+
+                            if (user.Deletar(userEmail) == true)
+                            {
                                 goto Login; // se a exclusão for confirmada, vai até o ponto de partida 'LOGIN'
+                            }
+                            else
+                            {
+
+                            }
+                        break;
 
                         case ConsoleKey.D0: // nono caso, se o usuário apertar o número 0 no teclado e escolher a opção [0] - DESLOGAR.
                             Deslogar(); // Chama a função 'Deslogar' da classe Login.

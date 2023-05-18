@@ -7,8 +7,8 @@ namespace product_project
 {
     public class Marca
     {
-        private int Codigo { get; set; }
-        private string NomeMarca {get; set;}
+        public int Codigo { get; set; }
+        public string NomeMarca {get; set;}
         private DateTime DataCadastro { get; set; }
 
         List<Marca> marca = new List<Marca>();

@@ -10,16 +10,35 @@ namespace product_project
         private int Codigo { get; set; }
         private string NomeProduto {get;set;}
         private float Preco { get; set; }
-        private DateTime DataCadastro { get; set; }
-        private Marca Marca{ get; set; }
+        private DateTime DataCadastro = DateTime.Now;
+        private Marca Marca = new Marca();
         private Usuario CadastradoPor { get; set; }
 
         private List<Produto> ListaDeProdutos = new List<Produto>();
 
 
-        public string Cadastrar(Produto _produto)
+        public void Cadastrar()
         {
-            return "";
+            Produto NovoProduto = new Produto();
+            
+
+            Console.WriteLine($"Digite o código do produto: ");
+            NovoProduto.Codigo = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Digite o nome do produto: ");
+            NovoProduto.NomeProduto = Console.ReadLine();
+
+            Console.WriteLine($"Digite a marca do produto: ");
+            Marca.NomeMarca = Console.ReadLine();
+
+            Console.WriteLine($"Digite o código da marca: ");
+            Marca.Codigo = int.Parse(Console.ReadLine());
+            
+            Console.WriteLine($"Digite o preço do produto: ");
+            NovoProduto.Preco = float.Parse(Console.ReadLine());
+
+            
+
         }
 
         public List<Produto> Listar()

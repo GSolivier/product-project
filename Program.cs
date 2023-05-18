@@ -1,8 +1,8 @@
 ﻿using product_project;
 
-Login servico = new Login();
+Login app = new Login(); // Cria um objeto da classe Login
 
-servico.Programa();
+app.Programa(); // Chama o método programa da classe login, que contém toda a lógica dos menus.
         
 
 

@@ -11,7 +11,6 @@ namespace product_project
         //Instancia objetos de outras classes
         Ferramentas tool = new Ferramentas();
         
-
         //Instancia atributos da classe Usuario
         private Random Codigo = new Random();
         public string Nome { get; set; }
